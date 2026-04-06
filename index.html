@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이코딩 | 개발자 포트폴리오</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:   '#3b82f6',
+              purple: '#8b5cf6',
+              green:  '#34d399',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#1a1730] text-slate-200 antialiased">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#hero" class="text-3xl font-bold gradient-text tracking-tight">&lt;이코딩&gt;</a>
+
+      <!-- Desktop Menu + CTA (right-aligned) -->
+      <div class="hidden md:flex items-center gap-8">
+        <ul class="flex items-center gap-8 text-sm font-medium">
+          <li><a href="#about"    class="nav-link">소개</a></li>
+          <li><a href="#skills"   class="nav-link">기술</a></li>
+          <li><a href="#projects" class="nav-link">프로젝트</a></li>
+          <li><a href="#contact"  class="nav-link">연락처</a></li>
+        </ul>
+        <a href="#contact"
+           class="btn-glow text-white text-sm font-semibold px-5 py-2 rounded-full">
+          Contact Me
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="메뉴">
+        <span class="block w-6 h-0.5 bg-slate-300"></span>
+        <span class="block w-6 h-0.5 bg-slate-300"></span>
+        <span class="block w-6 h-0.5 bg-slate-300"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden mt-3 mx-2 rounded-2xl bg-[#1e1b38] border border-purple-500/20 overflow-hidden">
+      <ul class="flex flex-col text-sm font-medium divide-y divide-white/5">
+        <li><a href="#about"    class="block px-6 py-4 hover:text-blue-400 transition-colors">소개</a></li>
+        <li><a href="#skills"   class="block px-6 py-4 hover:text-blue-400 transition-colors">기술</a></li>
+        <li><a href="#projects" class="block px-6 py-4 hover:text-blue-400 transition-colors">프로젝트</a></li>
+        <li><a href="#contact"  class="block px-6 py-4 hover:text-blue-400 transition-colors">연락처</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Floating orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-white/5 border border-blue-500/30 text-blue-400 text-xs font-medium px-4 py-1.5 rounded-full mb-6 fade-in" data-delay="0">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Available for work
+      </div>
+
+      <!-- Name -->
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-4 fade-in" data-delay="100">
+        안녕하세요,<br />
+        <span class="gradient-text">이코딩</span>입니다.
+      </h1>
+
+      <!-- Typing role -->
+      <p class="text-xl md:text-2xl text-slate-400 font-medium mb-6 fade-in" data-delay="200">
+        저는 <span id="typing-text" class="text-purple-400 font-semibold"></span><span class="typing-cursor"></span>
+      </p>
+
+      <!-- Intro -->
+      <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-10 fade-in" data-delay="300">
+        만나서 반가워~<br />
+        즐거운 하루 보내세요 :)
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in" data-delay="400">
+        <a href="#projects"
+           class="btn-glow text-white font-semibold px-8 py-3.5 rounded-full text-sm">
+          프로젝트 보기 →
+        </a>
+        <a href="#contact"
+           class="border border-slate-600 hover:border-purple-500 text-slate-300 hover:text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all duration-300">
+          연락하기
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 fade-in" data-delay="600">
+      <span class="text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-0.5 h-8 bg-gradient-to-b from-slate-600 to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════ -->
+  <section id="about" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-divider"></div>
+        <h2 class="text-3xl md:text-4xl font-bold">About Me</h2>
+        <p class="text-slate-500 mt-2 text-sm">저를 소개합니다</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <!-- Avatar card -->
+        <div class="fade-in flex justify-center" data-delay="100">
+          <div class="relative">
+            <div class="w-56 h-56 rounded-3xl bg-gradient-to-br from-blue-500 via-purple-500 to-green-400 p-1">
+              <div class="w-full h-full rounded-3xl bg-[#1a1730] flex items-center justify-center">
+                <span class="text-7xl">👨‍💻</span>
+              </div>
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-4 -right-4 bg-[#1e1b38] border border-amber-500/40 rounded-2xl px-4 py-2 text-center shadow-lg">
+              <p class="text-amber-400 text-xs font-semibold">열정적인</p>
+              <p class="text-white text-sm font-bold">개발자</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="fade-in space-y-5" data-delay="200">
+          <h3 class="text-2xl font-bold text-white">
+            코드로 세상을 만들어가는<br />
+            <span class="gradient-text">이코딩</span>입니다
+          </h3>
+          <p class="text-slate-400 leading-relaxed">
+            웹 개발에 열정을 가진 개발자로, 사용자 경험을 중시하며
+            깔끔하고 효율적인 코드를 지향합니다.
+          </p>
+          <p class="text-slate-400 leading-relaxed">
+            새로운 기술을 배우는 것을 즐기고, 창의적인 아이디어를
+            현실로 구현하는 것에 보람을 느낍니다.
+          </p>
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 pt-2">
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-md">
+              <p class="text-2xl font-bold gradient-text">3+</p>
+              <p class="text-slate-500 text-xs mt-1">Years Exp.</p>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-md">
+              <p class="text-2xl font-bold gradient-text">20+</p>
+              <p class="text-slate-500 text-xs mt-1">Projects</p>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-md">
+              <p class="text-2xl font-bold gradient-text">∞</p>
+              <p class="text-slate-500 text-xs mt-1">열정</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SKILLS
+  ════════════════════════════════════════ -->
+  <section id="skills" class="py-24 px-6 bg-[#141228]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-divider"></div>
+        <h2 class="text-3xl md:text-4xl font-bold">Skills</h2>
+        <p class="text-slate-500 mt-2 text-sm">사용할 수 있는 기술들</p>
+      </div>
+
+      <!-- Skill badges -->
+      <div class="flex flex-wrap justify-center gap-3 mb-14 fade-in" data-delay="100">
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-400">HTML5</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-purple-500/10 border border-purple-500/30 text-purple-400">CSS3</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-yellow-500/10 border border-yellow-500/30 text-yellow-400">JavaScript</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">React</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-green-500/10 border border-green-500/30 text-green-400">Node.js</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-blue-400/10 border border-blue-400/30 text-blue-300">TypeScript</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-teal-500/10 border border-teal-500/30 text-teal-400">Tailwind CSS</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold bg-orange-500/10 border border-orange-500/30 text-orange-400">Git</span>
+      </div>
+
+      <!-- Skill bars -->
+      <div class="space-y-6 fade-in" data-delay="200">
+
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">HTML / CSS</span>
+            <span class="text-blue-400 font-semibold">90%</span>
+          </div>
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-blue-500 to-purple-500" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">JavaScript</span>
+            <span class="text-purple-400 font-semibold">82%</span>
+          </div>
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-purple-500 to-green-400" data-width="82%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">React</span>
+            <span class="text-cyan-400 font-semibold">75%</span>
+          </div>
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-cyan-500 to-blue-500" data-width="75%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">Node.js</span>
+            <span class="text-green-400 font-semibold">68%</span>
+          </div>
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-green-500 to-teal-400" data-width="68%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       PROJECTS  (3 cards)
+  ════════════════════════════════════════ -->
+  <section id="projects" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-divider"></div>
+        <h2 class="text-3xl md:text-4xl font-bold">Projects</h2>
+        <p class="text-slate-500 mt-2 text-sm">직접 만든 프로젝트들</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="project-card rounded-2xl p-6 fade-in" data-delay="0">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-2xl mb-5">
+            🛒
+          </div>
+          <div class="flex items-center gap-2 mb-3">
+            <h3 class="text-lg font-bold text-white">쇼핑몰 웹앱</h3>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30">완료</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            React와 Node.js로 만든 풀스택 쇼핑몰. 장바구니, 결제 기능, 관리자 대시보드를 포함합니다.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">React</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Node.js</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">MongoDB</span>
+          </div>
+          <div class="flex gap-3 pt-4 border-t border-white/5">
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-blue-500/20 text-slate-300 hover:text-blue-400 transition-all">GitHub</a>
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-purple-500/20 text-slate-300 hover:text-purple-400 transition-all">Live Demo</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="project-card rounded-2xl p-6 fade-in" data-delay="150">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-green-400 flex items-center justify-center text-2xl mb-5">
+            📝
+          </div>
+          <div class="flex items-center gap-2 mb-3">
+            <h3 class="text-lg font-bold text-white">할 일 관리앱</h3>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">진행중</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            드래그앤드롭 기능을 갖춘 Todo 앱. 카테고리별 관리, 마감일 알림, 다크모드를 지원합니다.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">JavaScript</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">Tailwind</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">LocalStorage</span>
+          </div>
+          <div class="flex gap-3 pt-4 border-t border-white/5">
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-blue-500/20 text-slate-300 hover:text-blue-400 transition-all">GitHub</a>
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-purple-500/20 text-slate-300 hover:text-purple-400 transition-all">Live Demo</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="project-card rounded-2xl p-6 fade-in" data-delay="300">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-cyan-500 flex items-center justify-center text-2xl mb-5">
+            🌤️
+          </div>
+          <div class="flex items-center gap-2 mb-3">
+            <h3 class="text-lg font-bold text-white">날씨 대시보드</h3>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30">완료</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            OpenWeather API를 활용한 실시간 날씨 앱. 5일 예보, 지도 연동, 위치 자동 감지를 제공합니다.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-blue-400/10 text-blue-300 border border-blue-400/20">TypeScript</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">React</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">API</span>
+          </div>
+          <div class="flex gap-3 pt-4 border-t border-white/5">
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-blue-500/20 text-slate-300 hover:text-blue-400 transition-all">GitHub</a>
+            <a href="#" class="flex-1 text-center text-xs font-semibold py-2 rounded-lg bg-white/5 hover:bg-purple-500/20 text-slate-300 hover:text-purple-400 transition-all">Live Demo</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════ -->
+  <section id="contact" class="py-24 px-6 bg-[#141228]">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="fade-in">
+        <div class="section-divider"></div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Contact</h2>
+        <p class="text-slate-500 text-sm mb-12">함께 일하고 싶으신가요? 연락해 주세요!</p>
+      </div>
+
+      <!-- Contact cards -->
+      <div class="grid sm:grid-cols-2 gap-5 mb-10">
+
+        <!-- Email -->
+        <a href="mailto:leecoding@example.com"
+           class="contact-card rounded-2xl p-6 flex flex-col items-center gap-3 fade-in" data-delay="100">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-2xl">
+            ✉️
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Email</p>
+            <p class="text-slate-400 text-xs mt-1">leecoding@example.com</p>
+          </div>
+          <span class="text-blue-400 text-xs font-medium mt-1 flex items-center gap-1">
+            메일 보내기 →
+          </span>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/leecoding" target="_blank" rel="noopener noreferrer"
+           class="contact-card rounded-2xl p-6 flex flex-col items-center gap-3 fade-in" data-delay="200">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-green-400 flex items-center justify-center text-2xl">
+            🐱
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">GitHub</p>
+            <p class="text-slate-400 text-xs mt-1">github.com/leecoding</p>
+          </div>
+          <span class="text-purple-400 text-xs font-medium mt-1 flex items-center gap-1">
+            프로필 보기 →
+          </span>
+        </a>
+
+      </div>
+
+      <!-- Big CTA -->
+      <div class="fade-in" data-delay="300">
+        <p class="text-slate-500 text-sm mb-5">또는 직접 메시지를 남겨주세요</p>
+        <a href="mailto:leecoding@example.com"
+           class="btn-glow inline-block text-white font-semibold px-10 py-4 rounded-full text-sm">
+          👋 안녕하세요, 이코딩님!
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 py-16 px-6 text-center">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-lg font-bold gradient-text">&lt;이코딩 /&gt;</span>
+      <p class="text-slate-600 text-sm">
+        © 2026 이코딩. Made with ❤️ & HTML, CSS, JS
+      </p>
+      <div class="flex gap-4">
+        <a href="mailto:leecoding@example.com" class="text-slate-600 hover:text-blue-400 text-sm transition-colors">Email</a>
+        <a href="https://github.com/leecoding" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-purple-400 text-sm transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
