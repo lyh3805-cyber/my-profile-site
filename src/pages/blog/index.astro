@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import '../../styles/global.css';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="블로그 | 이코딩" description="이코딩의 개발 블로그">
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-[#0a0a1a]/95 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold gradient-text">&lt;이코딩&gt;</a>
+      <div class="flex items-center gap-6 text-sm text-slate-400">
+        <a href="/#projects" class="hover:text-white transition-colors">프로젝트</a>
+        <a href="/#contact"  class="hover:text-white transition-colors">연락처</a>
+        <a href="/#contact" class="btn-glow text-white text-sm font-semibold px-4 py-2 rounded-full">
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-36 pb-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="section-divider mb-6"></div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Blog</h1>
+      <p class="text-slate-400 text-lg">개발하면서 배운 것들을 기록합니다</p>
+      <p class="text-slate-600 text-sm mt-2">총 {posts.length}개의 포스트</p>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <main class="pb-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      {posts.length === 0 ? (
+        <div class="text-center py-20 text-slate-600">
+          <p class="text-5xl mb-4">✍️</p>
+          <p>아직 작성된 포스트가 없습니다.</p>
+        </div>
+      ) : (
+        <div class="grid md:grid-cols-2 gap-6">
+          {posts.map(post => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              tags={post.data.tags}
+              slug={post.slug}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-10 px-6 text-center">
+    <p class="text-slate-600 text-sm">
+      © {new Date().getFullYear()} 이코딩 · <a href="/" class="hover:text-purple-400 transition-colors">포트폴리오로 돌아가기</a>
+    </p>
+  </footer>
+</BaseLayout>

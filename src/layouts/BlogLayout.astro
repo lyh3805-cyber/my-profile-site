@@ -1,0 +1,72 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, tags = [] } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('ko-KR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} | 이코딩 블로그`} description={description}>
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-[#0a0a1a]/95 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-3xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold gradient-text">&lt;이코딩&gt;</a>
+      <a href="/blog" class="text-sm text-slate-400 hover:text-white transition-colors">
+        ← 블로그 목록
+      </a>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <main class="pt-28 pb-24 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400">
+              #{tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">{title}</h1>
+        {description && (
+          <p class="text-slate-400 text-lg leading-relaxed mb-6">{description}</p>
+        )}
+        <div class="flex items-center gap-3 text-slate-500 text-sm border-t border-white/5 pt-6">
+          <span class="text-2xl">👨‍💻</span>
+          <span>이코딩</span>
+          <span>·</span>
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <article class="prose-dark max-w-none space-y-5 leading-relaxed">
+        <slot />
+      </article>
+
+      <!-- Footer nav -->
+      <div class="mt-16 pt-8 border-t border-white/5 flex justify-between items-center">
+        <a href="/blog" class="text-sm text-purple-400 hover:text-purple-300 transition-colors">
+          ← 블로그 목록으로
+        </a>
+        <a href="/#contact" class="btn-glow text-white text-sm font-semibold px-5 py-2 rounded-full">
+          연락하기
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+const badges = [
+  { label: 'HTML5',       color: 'blue'   },
+  { label: 'CSS3',        color: 'purple' },
+  { label: 'JavaScript',  color: 'yellow' },
+  { label: 'React',       color: 'cyan'   },
+  { label: 'Node.js',     color: 'green'  },
+  { label: 'TypeScript',  color: 'sky'    },
+  { label: 'Tailwind CSS',color: 'teal'   },
+  { label: 'Astro',       color: 'orange' },
+  { label: 'Git',         color: 'rose'   },
+];
+
+const skillBars = [
+  { name: 'HTML / CSS',  pct: 90, from: 'from-blue-500',   to: 'to-purple-500', textColor: 'text-blue-400'   },
+  { name: 'JavaScript',  pct: 82, from: 'from-purple-500', to: 'to-green-400',  textColor: 'text-purple-400' },
+  { name: 'React',       pct: 75, from: 'from-cyan-500',   to: 'to-blue-500',   textColor: 'text-cyan-400'   },
+  { name: 'Node.js',     pct: 68, from: 'from-green-500',  to: 'to-teal-400',   textColor: 'text-green-400'  },
+];
+
+const badgeClasses: Record<string, string> = {
+  blue:   'bg-blue-500/10 border-blue-500/30 text-blue-400',
+  purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
+  yellow: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400',
+  cyan:   'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
+  green:  'bg-green-500/10 border-green-500/30 text-green-400',
+  sky:    'bg-blue-400/10 border-blue-400/30 text-blue-300',
+  teal:   'bg-teal-500/10 border-teal-500/30 text-teal-400',
+  orange: 'bg-orange-500/10 border-orange-500/30 text-orange-400',
+  rose:   'bg-rose-500/10 border-rose-500/30 text-rose-400',
+};
+---
+
+<section id="skills" class="py-24 px-6 bg-[#141228]">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <div class="section-divider"></div>
+      <h2 class="text-3xl md:text-4xl font-bold">Skills</h2>
+      <p class="text-slate-500 mt-2 text-sm">사용할 수 있는 기술들</p>
+    </div>
+
+    <!-- Skill badges -->
+    <div class="flex flex-wrap justify-center gap-3 mb-14 fade-in" data-delay="100">
+      {badges.map(b => (
+        <span class={`px-4 py-2 rounded-full text-sm font-semibold border ${badgeClasses[b.color]}`}>
+          {b.label}
+        </span>
+      ))}
+    </div>
+
+    <!-- Skill bars -->
+    <div class="space-y-6 fade-in" data-delay="200">
+      {skillBars.map(s => (
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">{s.name}</span>
+            <span class={`${s.textColor} font-semibold`}>{s.pct}%</span>
+          </div>
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div
+              class={`skill-bar-fill bg-gradient-to-r ${s.from} ${s.to}`}
+              data-width={`${s.pct}%`}
+            ></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Skill bars animate on scroll
+  const skillBars = document.querySelectorAll('.skill-bar-fill');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = (entry.target as HTMLElement).dataset.width!;
+        (entry.target as HTMLElement).style.width = target;
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  skillBars.forEach(bar => skillObserver.observe(bar));
+</script>

@@ -1,0 +1,101 @@
+---
+---
+
+<section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Floating orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 bg-white/5 border border-blue-500/30 text-blue-400 text-xs font-medium px-4 py-1.5 rounded-full mb-6 fade-in" data-delay="0">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      Available for work
+    </div>
+
+    <!-- Name -->
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 fade-in" data-delay="100">
+      안녕하세요,<br />
+      <span class="gradient-text">이코딩</span>입니다.
+    </h1>
+
+    <!-- Typing role -->
+    <p class="text-xl md:text-2xl text-slate-400 font-medium mb-6 fade-in" data-delay="200">
+      저는 <span id="typing-text" class="text-purple-400 font-semibold"></span><span class="typing-cursor"></span>
+    </p>
+
+    <!-- Intro -->
+    <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-10 fade-in" data-delay="300">
+      만나서 반가워~<br />
+      즐거운 하루 보내세요 :)
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" data-delay="400">
+      <a href="#projects" class="btn-glow text-white font-semibold px-8 py-3.5 rounded-full text-sm">
+        프로젝트 보기 →
+      </a>
+      <a href="/blog" class="border border-purple-500/50 hover:border-purple-400 text-purple-300 hover:text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all duration-300">
+        블로그 읽기
+      </a>
+      <a href="#contact" class="border border-slate-600 hover:border-purple-500 text-slate-300 hover:text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all duration-300">
+        연락하기
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 fade-in" data-delay="600">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <div class="w-0.5 h-8 bg-gradient-to-b from-slate-600 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<script>
+  const roles = ['개발자', 'Frontend Developer', 'Web Creator', 'UI Designer'];
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingEl = document.getElementById('typing-text')!;
+
+  function typeRole() {
+    const current = roles[roleIndex];
+    if (isDeleting) {
+      typingEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let delay = isDeleting ? 80 : 130;
+
+    if (!isDeleting && charIndex === current.length) {
+      delay = 1800;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      delay = 400;
+    }
+
+    setTimeout(typeRole, delay);
+  }
+
+  typeRole();
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = (entry.target as HTMLElement).dataset.delay || '0';
+        setTimeout(() => entry.target.classList.add('visible'), Number(delay));
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  fadeEls.forEach(el => fadeObserver.observe(el));
+</script>
