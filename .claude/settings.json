@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Prettier로 자동 포맷 중...",
+            "command": "node -e \"process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);const f=(j.tool_input&&j.tool_input.file_path)||(j.tool_response&&j.tool_response.filePath)||'';if(f&&/\\.(astro|md|ts|css)$/.test(f)){require('child_process').execSync('npx prettier --write \\\"'+f+'\\\"',{stdio:'inherit'});}}catch(e){}});\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
